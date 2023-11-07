@@ -140,5 +140,46 @@ export default css `
     border-radius: 10px;   
 }
 
+/* Estilos base de la tarjeta */
+.card {
+    position: relative;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden; /* Oculta el contenido que desborda el div */
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+/* Div de información oculto inicialmente */
+.card-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo con opacidad */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s; /* Transición suave para la opacidad */
+}
+
+.card h2, .card p {
+    margin: 5px;
+}
+
+
+.card:hover .card-info {
+    opacity: 1; 
+}
 
 `

@@ -28,6 +28,7 @@ export class WCIndexview extends LitElement{
                 }
             ]
         }
+        this.mostrarCards(1)
         
     }
 
@@ -55,7 +56,38 @@ export class WCIndexview extends LitElement{
         return[WCIndexStyle]
     }
 
-    
+    mostrarCards(x){
+        if(x){
+            this.main = html`
+            <div class="card w-25 h-25 m-5 lead">
+                <div class="m-3">Matricula a tu hijo aqui!</div>
+                <div class="card w-100 h-100 bg-secondary">
+                <img src="./src/img/Estudiantes.jpg" alt="Estudiantes" class="h-100">
+                    <div class="card-info">
+                        <h2>Formulario de matricula</h2>
+                        <button @click=${(e)=>this.mostrarMainEstudiantes(1)}>Aquí!</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card w-25 h-25 m-5 lead">
+                <div class="m-3">Registrate como acudiente aqui!</div>
+                <div class="card w-100 h-100 bg-primary">
+                    <img src="./src/img/Acudientes.jpg" alt="Acudientes" class="h-100">
+                    <div class="card-info">
+                        <h2>Formulario de registro</h2>
+                        <button @click=${(e)=>this.mostrarAcudiente(1)}>Aquí!</button>
+                    </div>
+                </div>
+            </div>
+
+            `
+        }else{
+            this.main=html``
+        }
+    }
+
+
     mostrarMenu(){
         const sideMenu = this.shadowRoot.querySelector("#sideMenu");
         sideMenu.classList.remove("left-25")
@@ -84,7 +116,7 @@ export class WCIndexview extends LitElement{
 
     mostrarLogin(x){
         if(x){
-            this.main = html `<wc-loginview .profesores="${this.arreglos.Profesores}"></wc-loginview>`
+            this.main = html `<wc-loginview class="w-100" .profesores="${this.arreglos.Profesores}"></wc-loginview>`
         }else{
             this.main=html``
         }
@@ -120,9 +152,10 @@ export class WCIndexview extends LitElement{
                 </div>
             </div>
 
-            <div class="w-100" @click=${(e)=>this.ocultarMenu()}>
+            <div class="container w-100 d-flex justify-content-center align-items-center" @click=${(e)=>this.ocultarMenu()}>
+
             ${this.main}
-            
+
             </div>
         `
     }

@@ -61,6 +61,7 @@ export class WCMainProfesoresView extends LitElement {
 
             this.requestUpdate();
         }
+        this.cerrarModal()
     }
 
 
@@ -102,12 +103,15 @@ export class WCMainProfesoresView extends LitElement {
     abrirModal() {
         const miModal = this.shadowRoot.querySelector("#modalRegistro");
         miModal.style.display = "block";
+        miModal.style.background="rgb(0,0,0,0.7)"
+        
     }
 
 
     cerrarModal() {
         const miModal = this.shadowRoot.querySelector("#modalRegistro");
         miModal.style.display = "none";
+        miModal.style.background="none"
     }
 
     abrirModalActualizar() {
@@ -182,12 +186,16 @@ export class WCMainProfesoresView extends LitElement {
         <div class="container-fluid">
             <div class="page-header">
                 <div class="row align-items-center justify-content-between">
+                    <div class="m-3">
+                        <h1>Profesores</h1>
+                    </div>
                     <div class="col-auto">
-                        <a class="btn btn-primary" href="javascript:;" @click="${this.abrirModal}">
+                        <a class="btn bg-blue1 text-white  mt-1 p-3" href="javascript:;" @click="${this.abrirModal}">
                         <i class="bi-person-plus-fill me-1"></i> Nuevo</a>
                     </div>
-                    <div class="modal" id="modalRegistro" tabindex="-1" role="dialog" style="display: none;">
-                        <div class="modal-dialog" role="document">
+                    
+                    <div class="modal " id="modalRegistro" tabindex="-1" role="dialog" style="display: none;">
+                        <div class="modal-dialog modal-dialog-centered bg-transparent" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Formulario de Registro</h5>
@@ -219,7 +227,7 @@ export class WCMainProfesoresView extends LitElement {
                                             <label for="estado" class="form-label">Curso</label>
                                             <input type="text" class="form-control" id="estado" .value="${this.curso}" @input="${(e) => (this.curso = e.target.value)}">
                                         </div>
-                                        <button type="button" class="btn btn-primary" @click="${this.registrarProfesor}">Enviar</button>
+                                        <button type="button" class="bg-blue1 text-white" @click="${this.registrarProfesor}">Enviar</button>
                                     </form>
                                 </div>
                             </div>

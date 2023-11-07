@@ -54,4 +54,14 @@ export default css`
     border:1px solid black;
     border-radius:50px;
 }
+.bg-blue1{
+    background-color:#265D80;
+    transition:0.5s
+}
+.bg-blue1:hover{
+    background-color:gray;
+}
+
+
+
 `

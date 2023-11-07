@@ -1,4 +1,5 @@
 import { LitElement, html } from "lit-element";
+import WCLoginStyle from "./WCLoginStyle";
 
 
 
@@ -33,6 +34,10 @@ export class WCLoginView extends LitElement{
         return {
             "wc-mainprofesoresview":WCMainProfesoresView,
         };
+    }
+
+    static get styles(){
+        return[WCLoginStyle]
     }
 
     mostrarMainProfesores(x){
@@ -81,9 +86,7 @@ export class WCLoginView extends LitElement{
         return html `<div class="position-absolute bottom-0 start-50 translate-middle z-index-1">${this.mensaje}</div>`
     }
 
-    static get styles(){
-        return[]
-    }
+
 
     render(){
         return html `
@@ -91,17 +94,17 @@ export class WCLoginView extends LitElement{
         @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
         </style>
-    
-        <div class="container position-relative d-flex justify-content-center aling-items-center" id="login">
-            <div class="position-absolute bottom-50 start-50 translate-middle z-index-1" ><i class="fas fa-user fa-5x bg-icon p-5 rounded-circle" style="color: #ffffff;"></i></div>
-            <div class="container border border-0 border-20 px-5 py-5 bg-whiteTransparent position-relative w-50">
+    <div id="login">
+        <div class="container position-relative d-flex justify-content-center aling-items-center w-75 bg-light container-border-rounded p-5" >
+            <div class="position-absolute bottom-50 start-50 translate-middle z-index-1"  ><i class="fas fa-user fa-5x bg-icon p-5 rounded-circle bg-blue1" style="color:#ffff"></i></div>
+            <div class="container border border-0 border-20  bg-whiteTransparent position-relative w-100">
 
                 <div class="mb-3 mt-5 d-flex" >
-                    <span class="input-group-text bg-icon"><i class="fas fa-user" style="color: #ffffff;"></i></span>
+                    <span class="input-group-text bg-icon"><i class="fas fa-user"></i></span>
                     <input type="text" id="username" class="w-100 rounded form-control bg-input placeholder-white" placeholder="Usuario"></input>  
                 </div>
                 <div class="mb-3 d-flex">
-                    <span class="input-group-text bg-icon"><i class="fas fa-lock" style="color: #ffffff;"></i></span>
+                    <span class="input-group-text bg-icon"><i class="fas fa-lock"></i></span>
                     <input type="password" id="password" class="w-100 rounded form-control bg-input placeholder-white" placeholder="Password"></input>
                 </div>  
                 <div class="d-flex justify-content-between">
@@ -109,14 +112,12 @@ export class WCLoginView extends LitElement{
                         <input type="checkbox" name="remember" id="remember" class="form-check-input">
                         <label for="remember" class="form-check-label">Recuerdame</label>
                     </div>
-                    <div class="ml-auto">
-                        <span>Recuperar contraseña</span>
-                    </div>
-                <button class="btn position-absolute start-50 translate-middle-x mt-1 w-25 bottom-rounded p-3" @click=${(e)=>this.ingresarLogin()}><strong>LOGIN<strong></button>
+                <button class="btn position-absolute start-50 translate-middle-x mt-1 w-25 p-3 bg-blue1 text-white" @click=${(e)=>this.ingresarLogin()}><strong>LOGIN<strong></button>
                 ${this.mostrarError()}
                 </div>                         
             </div> 
         </div>
+    </div>
         ${this.main}
         `
     }
