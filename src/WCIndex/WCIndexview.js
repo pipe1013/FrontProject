@@ -3,7 +3,8 @@ import WCIndexStyle from "./WCIndexStyle";
 import { WCMainEstudiantesView } from "../WCMainEstudiantes/WCMainEstudiantesView";
 import { WCMainProfesoresView } from "../WCMainProfesores/WCMainProfesoresView";
 import { WCLoginView } from "../WCLogin/WCLoginView";
-import { WCAcudienteview } from "../WCACudiente/WCACudienteview";
+import { WCACudienteview } from "../WCACudiente/WCACudienteview";
+
 
 
 
@@ -37,7 +38,7 @@ export class WCIndexview extends LitElement{
             "wc-mainestudiantes":WCMainEstudiantesView,
             "wc-mainprofesoresview":WCMainProfesoresView,
             "wc-loginview":WCLoginView,
-            "my-acudiente":WCAcudienteview
+            "my-acudiente":WCACudienteview
         };
     }
 

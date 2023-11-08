@@ -2,7 +2,7 @@ import { LitElement, html } from "lit-element";
 import WCACudienteStyle from "../WCAcudiente/WCACudienteStyle";
 
 
-export class WCAcudienteview extends LitElement {
+export class WCACudienteview extends LitElement {
 
   constructor() {
     super();
@@ -299,4 +299,4 @@ render() {
 }
 }
 
-customElements.define('my-acudiente', WCAcudienteview)
+customElements.define('my-acudiente', WCACudienteview)

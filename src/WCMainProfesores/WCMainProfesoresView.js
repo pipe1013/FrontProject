@@ -179,7 +179,13 @@ export class WCMainProfesoresView extends LitElement {
         <style>
             @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
             @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-        </style>   
+        </style>
+        <nav>
+            <ul class="d-flex list-unstyled">
+                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3">Registrar salon</button></li>
+                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3">Registrar curso</button></li>
+            </ul>
+        </nav>
 <div class="d-flex flex-column justify-content-center aling-items-center m-100">
     <div class=" d-flex flex-column ">
         <!-- Sección a la derecha -->
