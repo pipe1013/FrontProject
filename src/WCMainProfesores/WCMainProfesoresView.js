@@ -1,5 +1,7 @@
 import { LitElement, html } from "lit-element";
 import WCMainProfesoresStyle from "./WCMainProfesoresStyle";
+import { wcCursosView } from "../WCCurso/wcCursosView";
+import { SalonesViews } from "../WCSalon/wcSalonViews";
 
 export class WCMainProfesoresView extends LitElement {
 
@@ -26,8 +28,26 @@ export class WCMainProfesoresView extends LitElement {
             curso: { type: String },
         }
     }
+
+    static get scopedElements(){
+        return {
+            "cursos-views":wcCursosView,
+            "salones-views":SalonesViews
+        };
+    }
+
+
     static get styles(){
         return[WCMainProfesoresStyle]
+    }
+
+    mostrarCursos(){
+        let main = this.shadowRoot.querySelector('#main')
+        main.innerHTML=`<cursos-views></cursos-views>`
+    }
+    mostrarSalones(){
+        let main = this.shadowRoot.querySelector('#main')
+        main.innerHTML=`<salones-views></salones-views>`
     }
 
     cargarProfesores() {
@@ -117,6 +137,7 @@ export class WCMainProfesoresView extends LitElement {
     abrirModalActualizar() {
         const miModal = this.shadowRoot.querySelector("#modalActualizar");
         miModal.style.display = "block";
+        miModal.style.background="rgb(0,0,0,0.7)"
     }
 
 
@@ -124,6 +145,7 @@ export class WCMainProfesoresView extends LitElement {
         console.log("modal cerrado")
         const miModal = this.shadowRoot.querySelector("#modalActualizar");
         miModal.style.display = "none";
+        miModal.style.background="none"
     }
 
 
@@ -182,11 +204,11 @@ export class WCMainProfesoresView extends LitElement {
         </style>
         <nav>
             <ul class="d-flex list-unstyled">
-                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3">Registrar salon</button></li>
-                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3">Registrar curso</button></li>
+                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3" @click=${(e)=>this.mostrarSalones()}>Registrar salon</button></li>
+                <li class="mx-3"><button class="btn bg-blue1 text-white  mt-1 p-3" @click=${(e)=>this.mostrarCursos()}>Registrar curso</button></li>
             </ul>
         </nav>
-<div class="d-flex flex-column justify-content-center aling-items-center m-100">
+<div class="d-flex flex-column justify-content-center aling-items-center m-100" id="main">
     <div class=" d-flex flex-column ">
         <!-- Sección a la derecha -->
         <div class="container-fluid">
@@ -275,7 +297,7 @@ export class WCMainProfesoresView extends LitElement {
         </div>
         
         <div class="modal" id="modalActualizar" tabindex="-1" role="dialog" style="display: none;">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered bg-transparent" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Formulario de Actualización</h5>

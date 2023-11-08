@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import stylesScss from './wcCursosStyle';
 
-class CursosViews extends LitElement {
+export class wcCursosView extends LitElement {
   constructor() {
     super();
     this.cursos = [
@@ -64,10 +64,10 @@ class CursosViews extends LitElement {
 
   render() {
     return html`
-      <div>
+      <div class="row align-items-center justify-content-between">
         <h1>Lista de Cursos</h1>
         <button style="float: left; font-size: 18px;"  @click=${(e)=>this.abrirAgregarCurso()}>Nuevo Curso</button>
-        <div class="modal" id="modalAgregarCurso" style="display: none;">
+        <div class="modal" id="modalAgregarCurso" tabindex="-1" role="dialog" style="display: none;">
         <div class="modal-dialog modal-dialog-centered bg-transparent" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -117,7 +117,7 @@ class CursosViews extends LitElement {
                 <button @click="${() => this.abrirActualizar(curso.ID)}">Actualizar</button>
 
                 
-      <div class="modal" id="modalActualizarCurso" style="display: none;">
+      <div class="modal" id="modalActualizarCurso" tabindex="-1" role="dialog" style="display: none;">
       <div class="modal-dialog modal-dialog-centered bg-transparent" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -179,7 +179,7 @@ class CursosViews extends LitElement {
     };
     this.cursos = [...this.cursos, nuevoCurso];
       this.saveCursosToLocalStorage(this.cursos);
-      this.requestUpdate('cursos');
+      this.requestUpdate();
       this.limpiarFormulario();
 
       this.cerrarAgregarCurso();
@@ -224,4 +224,4 @@ class CursosViews extends LitElement {
   }
 }
 
-customElements.define('cursos-views', CursosViews);
+customElements.define('cursos-views', wcCursosView);

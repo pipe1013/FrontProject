@@ -3,12 +3,7 @@ import WCIndexStyle from "./WCIndexStyle";
 import { WCMainEstudiantesView } from "../WCMainEstudiantes/WCMainEstudiantesView";
 import { WCMainProfesoresView } from "../WCMainProfesores/WCMainProfesoresView";
 import { WCLoginView } from "../WCLogin/WCLoginView";
-import { WCACudienteview } from "../WCACudiente/WCACudienteview";
-
-
-
-
-
+import { wcCursosView } from "../WCCurso/wcCursosView"; // Asegúrate de proporcionar la ruta correcta al componente
 
 
 export class WCIndexview extends LitElement{
@@ -38,7 +33,8 @@ export class WCIndexview extends LitElement{
             "wc-mainestudiantes":WCMainEstudiantesView,
             "wc-mainprofesoresview":WCMainProfesoresView,
             "wc-loginview":WCLoginView,
-            "my-acudiente":WCACudienteview
+            "my-acudiente":WCACudienteview,
+            "cursos-views":wcCursosView
         };
     }
 

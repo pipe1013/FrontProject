@@ -38,7 +38,11 @@ export default css `
   }
   
   /* Agrega más estilos de la ventana modal según sea necesario */
-  
+  .bg-blue1{
+    background-color:#265D80;
+}
+#botonAbrirModal:hover{
+  background-color:gray;
 }
 
 `

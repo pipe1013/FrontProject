@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import stylesScss from './wcSalonStyle';
 
-class SalonesViews extends LitElement {
+export class SalonesViews extends LitElement {
   constructor() {
     super();
     this.salones = [];
@@ -28,7 +28,7 @@ class SalonesViews extends LitElement {
     const salon = this.salones.find((s) => s.ID === salonId);
 
     if (salon) {
-      this.shadowRoot.getElementById('piso').value = salon.PISO;
+      this.shadowRoot.getElementById('piso').value = salon.piso;
       this.salonIdActual = salonId;
       const modal = this.shadowRoot.querySelector(`#modalActualizarSalon`);
       modal.style.display = "block";
@@ -48,6 +48,7 @@ class SalonesViews extends LitElement {
       <div>
         <h1>Lista de Salones</h1>
         <button @click="${() => this.abrirAgregarSalon()}">Agregar Salón</button>
+
         <table>
           <tr>
             <th>ID</th>
@@ -58,9 +59,9 @@ class SalonesViews extends LitElement {
           ${this.salones.map(salon => html`
             <tr>
               <td>${salon.ID}</td>
-              <td>${salon.PISO}</td>
+              <td>${salon.piso}</td>
               <td>
-                <button @click="${() => this.toggleEstado(salon)}">${salon.ESTADO}</button>
+                <button @click="${() => this.toggleEstado(salon)}">${salon.estado}</button>
               </td>
               <td>
                 <button @click="${() => this.borrarSalon(salon.ID)}">Borrar</button>
@@ -90,25 +91,67 @@ class SalonesViews extends LitElement {
             </tr>
           `)}
         </table>
+
+        <div class="modal" id="modalAgregarSalon" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered bg-transparent" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" @click=${(e)=>this.cerrarAgregarSalon()}>
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex flex-column">
+                <label for="profesor">Id salon:</label>
+                <input class=" p-2 border-10 border-1" id="salon" name="salon" placeholder="salon">
+              </div>
+              <div class="d-flex flex-column">
+                <label for="capacidad">Piso:</label>
+                <input class=" p-2 border-10 border-1" id="piso" name="piso" placeholder="piso">
+              </div>
+              <div class="d-flex flex-column">
+                <label for="jornada">Estado:</label>
+                <input class=" p-2 border-10 border-1" id="estado" name="estado" placeholder="estado">
+              </div>
+            </div>
+            <div class="d-flex justify-content-center aling-items-center m-3">
+              <button class="bg-icon text-white p-2 border-10" @click=${(e)=>this.agregarSalon()}>Agregar</buttton>
+            </div>
+          </div>
+        </div>
       </div>
     `;
   }
 
-  agregarSalon() {
-    const PISO = prompt("Ingrese el piso del salón:");
-    const ESTADO = "Activo";
+  saveSalonesToLocalStorage(salones) {
+    localStorage.setItem('salones', JSON.stringify(salones));
+  }
 
-    if (PISO) {
-      const nuevoSalon = {
-        ID: this.salones.length + 1,
-        PISO,
-        ESTADO,
-      };
-      this.salones = [...this.salones, nuevoSalon];
+  limpiarFormulario() {
+    this.shadowRoot.getElementById('salon').value = '';
+    this.shadowRoot.getElementById('piso').value = '';
+    this.shadowRoot.getElementById('estado').value = '';
+  }
+
+
+  agregarSalon() {
+    
+    const salon = this.shadowRoot.getElementById('salon').value;
+    const piso = this.shadowRoot.getElementById('piso').value;
+    const estado = this.shadowRoot.getElementById('estado').value;
+
+
+    const nuevoSalon = {
+      ID: salon, 
+      piso: piso,
+      estado: estado,
+    };
+    this.salones = [...this.salones, nuevoSalon];
       this.saveSalonesToLocalStorage(this.salones);
-      this.requestUpdate('salones');
+      this.requestUpdate();
+      this.limpiarFormulario();
+
       this.cerrarAgregarSalon();
-    }
   }
 
   toggleEstado(salon) {
@@ -130,7 +173,7 @@ class SalonesViews extends LitElement {
       const indiceSalon = this.salones.findIndex((salon) => salon.ID === this.salonIdActual);
 
       if (indiceSalon !== -1) {
-        this.salones[indiceSalon].PISO = pisoActual;
+        this.salones[indiceSalon].piso = pisoActual;
 
         this.cerrarActualizarSalon();
         this.saveSalonesToLocalStorage(this.salones);

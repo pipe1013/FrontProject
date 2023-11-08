@@ -59,6 +59,7 @@ export class WCACudienteview extends LitElement {
 
       this.requestUpdate();
     }
+    this.cerrarModal()
   }
 
   actualizarAcudiente(acudiente) {
@@ -80,6 +81,7 @@ export class WCACudienteview extends LitElement {
     arregloAcudiente.telefono = telefono
 
     this.requestUpdate()
+    this.cerrarModalActualizar()
   }
   
   eliminarAcudiente(acudiente) {
@@ -94,22 +96,26 @@ export class WCACudienteview extends LitElement {
 abrirModal() {  
   const miModal = this.shadowRoot.querySelector("#modalRegistro");
   miModal.style.display = "block";
+  miModal.style.background="rgb(0,0,0,0.7)";
 }
 
 cerrarModal() {
   const miModal = this.shadowRoot.querySelector("#modalRegistro");
   miModal.style.display = "none";
+  miModal.style.background="none"
 }
 
 abrirModalActualizar() {
     const miModal = this.shadowRoot.querySelector("#modalActualizar");
     miModal.style.display = "block";
+    miModal.style.background="rgb(0,0,0,0.7)"
 }
 
   cerrarModalActualizar() {
     console.log("modal cerrado")
     const miModal = this.shadowRoot.querySelector("#modalActualizar");
     miModal.style.display = "none";
+    miModal.style.background="none"
   }
 
 buscarDatos() {
@@ -170,26 +176,13 @@ render() {
     </style>
 
     <div class="bg-light vw-100 vh-100 d-flex">
-        <div class="bg-secondary1 w-25  m-3 border-20 p-3">
-            <div class="bg-color-secondary">
-                <button class="w-100 mt-5 p-2 border-10" @click="${(e) => this.mostrarTablaUsuarios(1)}">
-                    <i class="fas fa-user"></i>Usuarios
-                </button>
-                <button class="w-100 mt-5 p-2 border-10" @click="${(e) => this.mostrarTablaCampanas(1)}">
-                    <i class="fas fa-bullhorn"></i>Campañas
-                </button>
-                <button class="w-100 mt-5 p-2 border-10" @click="${(e) => this.mostrarTablaEquipos(1)}">
-                    <i class="fas fa-users"></i>Equipos
-                </button>
-            </div>
-        </div>
 
-        <div class="col">
+        <div class="col m-5">
             <button
-                id="botonAbrirModal" 
-                class="bg-icon text-white p-2 text-big border-10 float-end>"
+                id="botonAbrirModal"
+                class="btn bg-blue1 text-white  mt-1 p-3>"
                 @click="${this.abrirModal}">
-                Nueva Campaña<i class="fas fa-plus fa-beat-fade"></i>
+                Nueva acudiente<i class="fas fa-plus fa-beat-fade"></i>
             </button>
             <div class="modal" id="modalRegistro" tabindex="-1" role="dialog" style="display: none;">
                 <div class="modal-dialog" role="document">
