@@ -164,25 +164,36 @@ export class wcCursosView extends LitElement {
   }
   
   agregarCurso() {
-    
     const profesor = this.shadowRoot.getElementById('profesor').value;
     const capacidad = this.shadowRoot.getElementById('capacidad').value;
     const jornada = this.shadowRoot.getElementById('jornada').value;
     const salon = this.shadowRoot.getElementById('salon').value;
-
+  
+    // Validar que los campos no estén vacíos
+    if (!profesor || !capacidad || !jornada || !salon) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+  
+    // Validar si el ID del salón ya está registrado
+    if (this.cursos.some(curso => curso.SALON === salon)) {
+      alert('Ya existe un curso en ese salón.');
+      return;
+    }
+  
     const nuevoCurso = {
-      ID: this.cursos.length + 1, 
+      ID: this.cursos.length + 1,
       PROFESOR: profesor,
       CAPACIDAD: capacidad,
       JORNADA: jornada,
-      SALON: salon, 
+      SALON: salon,
     };
+  
     this.cursos = [...this.cursos, nuevoCurso];
-      this.saveCursosToLocalStorage(this.cursos);
-      this.requestUpdate();
-      this.limpiarFormulario();
-
-      this.cerrarAgregarCurso();
+    this.saveCursosToLocalStorage(this.cursos);
+    this.requestUpdate();
+    this.limpiarFormulario();
+    this.cerrarAgregarCurso();
   }
 
   actualizarCurso() {

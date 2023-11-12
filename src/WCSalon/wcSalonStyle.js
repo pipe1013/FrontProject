@@ -29,17 +29,15 @@ th, td {
   text-align: left;
 }
 
-/* Estilos para los botones y la modal */
-button {
+.btn-activo {
   background-color: #007BFF;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+  color: white;
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Estilos para el botón inactivo (rojo) */
+.btn-inactivo {
+  background-color: red;
+  color: white;
 }
 
 .modal {
@@ -154,7 +152,8 @@ button:hover {
 }
 
 .modal-dialog {
-  width: 30%; /* Ancho del 30% de la pantalla */
+  width: 30%;
+  margin: 0 auto; /* Agrega margen automático */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -206,7 +205,7 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-}
+} 
 
 button:hover {
   background-color: #0056b3;
